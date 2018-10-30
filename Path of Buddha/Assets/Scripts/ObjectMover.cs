@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class ObjectMover : MonoBehaviour {
 
-    public float yVel;
+    private float yVel;
     Vector3 vel;
 
     void Start () {
+        yVel = 5.3f;
         vel = new Vector3(0, yVel, 0);
     }
 	

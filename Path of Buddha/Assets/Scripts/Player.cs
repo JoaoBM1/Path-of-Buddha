@@ -12,8 +12,7 @@ public class Player : MonoBehaviour
     public float initialWeight;
     public float currentWeight;
     private GUIStyle guiFont;
-    private bool transcendenceOn;
-    private float transcendenceDuration;
+    //private float transcendenceDuration;
 
     void Start()
     {
@@ -21,8 +20,7 @@ public class Player : MonoBehaviour
         guiFont = new GUIStyle();
         guiFont.fontSize = 40;
         guiFont.normal.textColor = Color.white;
-        transcendenceOn = false;
-        transcendenceDuration = 7000;
+        //transcendenceDuration = 20;
     }
 
     void Update()
@@ -45,11 +43,6 @@ public class Player : MonoBehaviour
     public void IncreaseWeight(int ammount)
     {
         currentWeight += ammount;
-    }
-
-    public void ActivateTranscendence()
-    {
-
     }
 
     void OnGUI()

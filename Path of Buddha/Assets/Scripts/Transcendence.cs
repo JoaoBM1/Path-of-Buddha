@@ -17,8 +17,13 @@ public class Transcendence : MonoBehaviour {
     {
         if (collision.gameObject.name == "Player")
         {
-            player.ActivateTranscendence();
             Destroy(this.gameObject);
+            Invoke("TranscendenceEffects", 5f);
         }
+    }
+
+    void TranscendenceEffects()
+    {
+        player.currentWeight += 50;
     }
 }
