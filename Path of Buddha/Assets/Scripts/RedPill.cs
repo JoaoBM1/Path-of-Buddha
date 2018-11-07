@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeightDecreaser : MonoBehaviour {
+public class RedPill : MonoBehaviour {
 
     GameObject playerObject;
     Player player;
-    int decreaseAmount = 10;
+    int decreaseAmount = 50;
 
     void Start()
     {
@@ -18,6 +18,19 @@ public class WeightDecreaser : MonoBehaviour {
     {
         if (collision.gameObject.name == "Player")
         {
+            Destroy(this.gameObject);
+            player.redPillCounter++;
+            player.updateRedPillText();
+            
+        }
+    }
+
+    public void onItemUse()
+    {
+        if (player.redPillCounter > 0)
+        {
+            player.redPillCounter--;
+            player.updateRedPillText();
             player.DecreaseWeight(decreaseAmount);
         }
     }

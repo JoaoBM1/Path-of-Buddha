@@ -14,5 +14,4 @@ public class PlayerController : MonoBehaviour {
         float vv = Input.GetAxisRaw(axisv);
         GetComponent<Rigidbody2D>().velocity = new Vector2(vh, vv) * speed;
     }
-
 }

@@ -6,6 +6,7 @@ public class WeightIncreaser : MonoBehaviour {
 
     GameObject playerObject;
     Player player;
+    int increaseAmount = 20;
 
     void Start()
     {
@@ -17,7 +18,7 @@ public class WeightIncreaser : MonoBehaviour {
     {
         if (collision.gameObject.name == "Player")
         {
-            player.IncreaseWeight(20);
+            player.IncreaseWeight(increaseAmount);
             Destroy(this.gameObject);
         }
     }
