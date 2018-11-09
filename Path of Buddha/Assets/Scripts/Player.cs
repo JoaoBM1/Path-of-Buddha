@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -62,16 +63,17 @@ public class Player : MonoBehaviour
         {
             greenPill.onItemUse();
         }
+
         //Lose Conditions:
 
         if (GetComponent<Rigidbody2D>().position.y <= -10)
         {
-            Debug.Log("You Lost");
+            SceneManager.LoadScene("Defeat Scene");
         }
 
         if(currentWeight <= 0)
         {
-            Debug.Log("You Lost");
+            SceneManager.LoadScene("Defeat Scene");
         }
     }
 
