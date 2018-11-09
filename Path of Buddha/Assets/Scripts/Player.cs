@@ -51,6 +51,11 @@ public class Player : MonoBehaviour
         currentWeight -= Time.deltaTime;
         transform.localScale = new Vector3(currentWeight / 50, currentWeight / 50, currentWeight / 50);
 
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            Time.timeScale = 1f;
+        }
+
         //Key Input Detection for Pills:
 
         if (Input.GetKeyUp(KeyCode.Alpha1))
