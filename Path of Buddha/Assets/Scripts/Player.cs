@@ -8,7 +8,6 @@ public class Player : MonoBehaviour
 {
 
     public float speed;
-    public float weightLossOverTime;
     private string axish = "Horizontal";
     private string axisv = "Vertical";
     public float initialWeight;
@@ -49,7 +48,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        currentWeight -= weightLossOverTime;
+        currentWeight -= Time.deltaTime;
         transform.localScale = new Vector3(currentWeight / 50, currentWeight / 50, currentWeight / 50);
 
         //Key Input Detection for Pills:

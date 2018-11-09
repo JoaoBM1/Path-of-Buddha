@@ -10,20 +10,24 @@ public class PressurePlateActIfHigher : MonoBehaviour {
     GameObject playerObject;
     Player player;
     Material material;
-    private GUIStyle guiFont;
+    public int id;
+    private GameObject[] offTrapWalls;
+    private GameObject[] onTrapWalls;
     public float pressurePlateWeight;
-    Rigidbody2D rb2d;
 
 	void Start ()
     {
         playerObject = GameObject.Find("Player");
         player = playerObject.GetComponent<Player>();
         material = GetComponent<Renderer>().material;
-        rb2d = GetComponent<Rigidbody2D>();
 
-        guiFont = new GUIStyle();
-        guiFont.fontSize = 10;
-        guiFont.normal.textColor = Color.white;
+        offTrapWalls = GameObject.FindGameObjectsWithTag("Off" + id.ToString());
+        onTrapWalls = GameObject.FindGameObjectsWithTag("On" + id.ToString());
+
+        foreach(GameObject i in onTrapWalls)
+        {
+            i.SetActive(false);
+        }
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -33,14 +37,19 @@ public class PressurePlateActIfHigher : MonoBehaviour {
             if(player.currentWeight >= pressurePlateWeight)
             {
                 //Activate Trap
+
+                foreach(GameObject i in offTrapWalls)
+                {
+                    i.SetActive(false);
+                }
+
+                foreach (GameObject i in onTrapWalls)
+                {
+                    i.SetActive(true);
+                }
                 //Change to Activated Sprite
                 material.color = Color.black;
             }
         }
-    }
-
-    void OnGUI()
-    {
-        GUI.Label(new Rect(rb2d.position.x + 50, rb2d.position.y, 100, 30), pressurePlateWeight.ToString(), guiFont);
     }
 }
