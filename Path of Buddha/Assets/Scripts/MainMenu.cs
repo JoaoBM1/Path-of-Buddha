@@ -9,7 +9,7 @@ public class MainMenu : MonoBehaviour {
     {
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        PauseMenu.GamePause = true;
+        Time.timeScale = 0f;
     }
 
     public void QuitGame()

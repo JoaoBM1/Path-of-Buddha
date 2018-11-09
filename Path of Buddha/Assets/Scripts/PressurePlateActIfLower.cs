@@ -10,6 +10,9 @@ public class PressurePlateActIfLower: MonoBehaviour {
     GameObject playerObject;
     Player player;
     Material material;
+    public int id;
+    private GameObject[] offTrapWalls;
+    private GameObject[] onTrapWalls;
     public float pressurePlateWeight;
 
 	void Start ()
@@ -17,16 +20,34 @@ public class PressurePlateActIfLower: MonoBehaviour {
         playerObject = GameObject.Find("Player");
         player = playerObject.GetComponent<Player>();
         material = GetComponent<Renderer>().material;
-	}
 
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        if(collision.gameObject.name == "Player")
+        offTrapWalls = GameObject.FindGameObjectsWithTag("Off" + id.ToString());
+        onTrapWalls = GameObject.FindGameObjectsWithTag("On" + id.ToString());
+
+        foreach (GameObject i in onTrapWalls)
         {
-            if(player.currentWeight <= pressurePlateWeight)
+            i.SetActive(false);
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == "Player")
+        {
+            if (player.currentWeight <= pressurePlateWeight)
             {
-                //Trap is activated
-                //Activated Pressure Plate Sprite
+                //Activate Trap
+
+                foreach (GameObject i in offTrapWalls)
+                {
+                    i.SetActive(false);
+                }
+
+                foreach (GameObject i in onTrapWalls)
+                {
+                    i.SetActive(true);
+                }
+                //Change to Activated Sprite
                 material.color = Color.black;
             }
         }
