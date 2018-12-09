@@ -22,8 +22,8 @@ GameObject:
   - component: {fileID: 33614260633845538}
   - component: {fileID: 23968498753789264}
   - component: {fileID: 61988043850729202}
-  - component: {fileID: 114392852149025962}
-  - component: {fileID: 114360091068528498}
+  - component: {fileID: 114310837698524480}
+  - component: {fileID: 114213048628973618}
   m_Layer: 0
   m_Name: PressurePlateActIfHigher
   m_TagString: Untagged
@@ -59,7 +59,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 6d77202076387aa41ad710278d35c8cf, type: 2}
+  - {fileID: 2100000, guid: 51bafb2917bc5ea439488b943a16f0b0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -111,18 +111,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &114360091068528498
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1680035350376242}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 302cc87dd637c4b46bc52c97c9695045, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114392852149025962
+--- !u!114 &114213048628973618
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -135,3 +124,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   pressurePlateWeight: 0
+--- !u!114 &114310837698524480
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1680035350376242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 302cc87dd637c4b46bc52c97c9695045, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

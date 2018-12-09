@@ -12,19 +12,27 @@ public class Player : MonoBehaviour
     private string axisv = "Vertical";
     public float initialWeight;
     public float currentWeight;
+    private float time;
     private GUIStyle guiFont;
-    public int redPillCounter;
-    public int greenPillCounter;
 
-    public Text redPillText;
-    public Text greenPillText;
-    //private float transcendenceDuration;
 
-    GameObject redPillObject;
-    RedPill redPill;
+    public int plusWeightCounter;
+    public int minusWeightCounter;
+    public int transcendenceCounter;
 
-    GameObject greenPillObject;
-    GreenPill greenPill;
+    public Text plusWeightText;
+    public Text minusWeightText;
+    public Text transcendenceText;
+
+
+    GameObject plusWeightObject;
+    PlusWeightItem plusWeight;
+
+    GameObject minusWeightObject;
+    MinusWeightItem minusWeight;
+
+    GameObject transcendenceObject;
+    Transcendence transcendence;
 
     void Start()
     {
@@ -32,41 +40,49 @@ public class Player : MonoBehaviour
         guiFont = new GUIStyle();
         guiFont.fontSize = 40;
         guiFont.normal.textColor = Color.white;
-        redPillCounter = 0;
-        greenPillCounter = 0;
+        plusWeightCounter = 0;
+        minusWeightCounter = 0;
+        transcendenceCounter = 0;
+        updateMinusWeightText();
+        updatePlusWeightText();
+        updateTranscendenceText();
+        time = Time.deltaTime;
 
-        updateRedPillText();
-        updateGreenPillText();
         //transcendenceDuration = 20;
 
-        redPillObject = GameObject.Find("RedPill");
-        redPill = redPillObject.GetComponent<RedPill>();
+        plusWeightObject = GameObject.Find("PlusWeight");
+        plusWeight = plusWeightObject.GetComponent<PlusWeightItem>();
 
-        greenPillObject = GameObject.Find("GreenPill");
-        greenPill = greenPillObject.GetComponent<GreenPill>();
+        minusWeightObject = GameObject.Find("MinusWeight");
+        minusWeight = minusWeightObject.GetComponent<MinusWeightItem>();
+
+        transcendenceObject = GameObject.Find("Transcendence");
+        transcendence = transcendenceObject.GetComponent<Transcendence>();
     }
 
     void Update()
     {
-        currentWeight -= Time.deltaTime;
+        currentWeight -= time;
         transform.localScale = new Vector3(currentWeight / 50, currentWeight / 50, currentWeight / 50);
-
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            Time.timeScale = 1f;
-        }
 
         //Key Input Detection for Pills:
 
         if (Input.GetKeyUp(KeyCode.Alpha1))
         {
-            redPill.onItemUse();
+            minusWeight.onItemUse();
         }
 
-        if (Input.GetKeyUp(KeyCode.Alpha2))
+        else if (Input.GetKeyUp(KeyCode.Alpha2))
         {
-            greenPill.onItemUse();
+            plusWeight.onItemUse();
         }
+
+        else if (Input.GetKeyUp(KeyCode.Alpha3))
+        {
+            transcendence.onItemUse();
+        }
+
+
 
         //Lose Conditions:
 
@@ -97,14 +113,19 @@ public class Player : MonoBehaviour
         currentWeight += ammount;
     }
 
-    public void updateRedPillText()
+    public void updateMinusWeightText()
     {
-        redPillText.text = "x" + redPillCounter.ToString();
+        minusWeightText.text = "x" + minusWeightCounter.ToString();
     }
 
-    public void updateGreenPillText()
+    public void updatePlusWeightText()
     {
-        greenPillText.text = "x" + greenPillCounter.ToString();
+        plusWeightText.text = "x" + plusWeightCounter.ToString();
+    }
+
+    public void updateTranscendenceText()
+    {
+        transcendenceText.text = "x" + transcendenceCounter.ToString();
     }
 
     void OnGUI()

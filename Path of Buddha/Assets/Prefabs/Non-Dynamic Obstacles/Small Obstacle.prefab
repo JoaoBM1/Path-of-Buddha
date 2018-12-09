@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 33393180342952030}
   - component: {fileID: 23228040394226604}
   - component: {fileID: 61406738314149660}
-  - component: {fileID: 114469462225881796}
   - component: {fileID: 114763315198726874}
   m_Layer: 0
   m_Name: Small Obstacle
@@ -111,17 +110,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &114469462225881796
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1359364027621312}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1594278292dc3204bb2366e5aea53e8f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114763315198726874
 MonoBehaviour:
   m_ObjectHideFlags: 1

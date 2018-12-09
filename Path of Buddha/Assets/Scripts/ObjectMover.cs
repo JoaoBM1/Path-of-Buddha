@@ -8,7 +8,7 @@ public class ObjectMover : MonoBehaviour {
     Vector3 vel;
 
     void Start () {
-        yVel = 5.3f;
+        yVel = 9.5f;
         vel = new Vector3(0, yVel, 0);
     }
 	

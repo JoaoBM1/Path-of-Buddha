@@ -17,6 +17,8 @@ public class PressurePlateActIfHigher : MonoBehaviour {
 
 	void Start ()
     {
+        GetComponentInChildren<TextMesh>().text = pressurePlateWeight.ToString();
+
         playerObject = GameObject.Find("Player");
         player = playerObject.GetComponent<Player>();
         material = GetComponent<Renderer>().material;
