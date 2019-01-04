@@ -8,6 +8,8 @@ TagManager:
   - On1
   - Off2
   - On2
+  - On3
+  - Off3
   layers:
   - Default
   - TransparentFX

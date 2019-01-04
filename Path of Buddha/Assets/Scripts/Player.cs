@@ -6,15 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-
-    public float speed;
-    private string axish = "Horizontal";
-    private string axisv = "Vertical";
     public float initialWeight;
     public float currentWeight;
-    private float time;
-    private GUIStyle guiFont;
+    private float weightLossWhileMovingFactor;
+    private float oldPosition;
+    private float weightDecreaserOvertime;
 
+    public GameObject loseMenu;
 
     public int plusWeightCounter;
     public int minusWeightCounter;
@@ -23,6 +21,7 @@ public class Player : MonoBehaviour
     public Text plusWeightText;
     public Text minusWeightText;
     public Text transcendenceText;
+    public Text currentWeightText;
 
 
     GameObject plusWeightObject;
@@ -36,17 +35,16 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        oldPosition = transform.position.x;
         currentWeight = initialWeight;
-        guiFont = new GUIStyle();
-        guiFont.fontSize = 40;
-        guiFont.normal.textColor = Color.white;
-        plusWeightCounter = 0;
-        minusWeightCounter = 0;
-        transcendenceCounter = 0;
         updateMinusWeightText();
         updatePlusWeightText();
         updateTranscendenceText();
-        time = Time.deltaTime;
+        plusWeightCounter = 0;
+        minusWeightCounter = 0;
+        transcendenceCounter = 0;
+        weightDecreaserOvertime = 2f;
+        weightLossWhileMovingFactor = 2.5f;
 
         //transcendenceDuration = 20;
 
@@ -56,14 +54,24 @@ public class Player : MonoBehaviour
         minusWeightObject = GameObject.Find("MinusWeight");
         minusWeight = minusWeightObject.GetComponent<MinusWeightItem>();
 
-        transcendenceObject = GameObject.Find("Transcendence");
+        transcendenceObject = GameObject.Find("Transcendence Buff");
         transcendence = transcendenceObject.GetComponent<Transcendence>();
     }
 
     void Update()
     {
-        currentWeight -= time;
-        transform.localScale = new Vector3(currentWeight / 50, currentWeight / 50, currentWeight / 50);
+        if(checkIfPlayerIsMovingHorizontally())
+        {
+            currentWeight -= (weightDecreaserOvertime * weightLossWhileMovingFactor) * Time.deltaTime;
+        } else {
+            currentWeight -= weightDecreaserOvertime * Time.deltaTime;
+        }
+
+        oldPosition = transform.position.x;
+
+        transform.localScale = new Vector3(currentWeight / 75, currentWeight / 75, currentWeight / 75);
+        
+        updateCurrentWeightText();
 
         //Key Input Detection for Pills:
 
@@ -88,20 +96,15 @@ public class Player : MonoBehaviour
 
         if (GetComponent<Rigidbody2D>().position.y <= -10)
         {
-            SceneManager.LoadScene("Defeat Scene");
+            loseMenu.SetActive(true);
+            Time.timeScale = 0f;
         }
 
         if(currentWeight <= 0)
         {
-            SceneManager.LoadScene("Defeat Scene");
+            loseMenu.SetActive(true);
+            Time.timeScale = 0f;
         }
-    }
-
-    void FixedUpdate()
-    {
-        float vh = Input.GetAxisRaw(axish);
-        float vv = Input.GetAxisRaw(axisv);
-        GetComponent<Rigidbody2D>().velocity = new Vector2(vh, vv) * speed;
     }
 
     public void DecreaseWeight(int ammount)
@@ -128,8 +131,20 @@ public class Player : MonoBehaviour
         transcendenceText.text = "x" + transcendenceCounter.ToString();
     }
 
-    void OnGUI()
+    private void updateCurrentWeightText()
     {
-        GUI.Label(new Rect(50, 50, 100, 30), "Weight: " + (int)currentWeight, guiFont);
+        currentWeightText.text = ((int) currentWeight).ToString();
+    }
+
+    private bool checkIfPlayerIsMovingHorizontally()
+    {
+        if (oldPosition < transform.position.x || oldPosition > transform.position.x)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

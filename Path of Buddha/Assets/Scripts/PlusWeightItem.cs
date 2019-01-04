@@ -14,6 +14,14 @@ public class PlusWeightItem : MonoBehaviour {
         player = playerObject.GetComponent<Player>();
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.T))
+        {
+            Debug.Log("hi");
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.name == "Player")

@@ -21,6 +21,7 @@ public class MinusWeightItem : MonoBehaviour {
             Destroy(this.gameObject);
             player.minusWeightCounter++;
             player.updateMinusWeightText();
+            
         }
     }
 
