@@ -10,6 +10,9 @@ TagManager:
   - On2
   - On3
   - Off3
+  - Food 1
+  - Food 2
+  - Food 3
   layers:
   - Default
   - TransparentFX

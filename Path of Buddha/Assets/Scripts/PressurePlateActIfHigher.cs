@@ -14,9 +14,9 @@ public class PressurePlateActIfHigher : MonoBehaviour {
     private GameObject[] onTrapWalls;
     public float pressurePlateWeight;
     public Sprite plate1;
-    
 
-    void Start ()
+
+    private void Start ()
     {
         GetComponentInChildren<TextMesh>().text = "< " + pressurePlateWeight.ToString();
 
